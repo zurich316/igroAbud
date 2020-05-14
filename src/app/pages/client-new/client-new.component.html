@@ -1,0 +1,129 @@
+<button [routerLink]="['../']" class="btn btn-secondary float-left">Atras</button>
+<h3 class="text-center">Datos del cliente</h3>
+<hr>
+<form [formGroup]="clientForm" (ngSubmit)="createClient()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Apellidos</label>
+            <input formControlName="lastname" type="text" class="form-control" placeholder="Apellidos" [ngClass]="{
+                'is-valid': !lastname.errors,
+                'is-invalid': lastname.errors && ( lastname.touched ||  lastname.dirty )
+              }">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Nombres</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="Nombres" [ngClass]="{
+                'is-valid': !name.errors,
+                'is-invalid': name.errors && ( name.touched ||  name.dirty )
+              }">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>Edad</label>
+            <input formControlName="age" type="number" class="form-control" [ngClass]="{
+                'is-valid': !age.errors,
+                'is-invalid': age.errors && ( age.touched ||  age.dirty )
+              }">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Lugar de nacimiento</label>
+            <input formControlName="birthPlace" type="text" class="form-control" [ngClass]="{
+                'is-valid': !birthPlace.errors,
+                'is-invalid': birthPlace.errors && ( birthPlace.touched ||  birthPlace.dirty )
+              }">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Fecha de nacimiento</label>
+            <input formControlName="birthDay" type="date" class="form-control" [ngClass]="{
+                'is-valid': !birthDay.errors,
+                'is-invalid': birthDay.errors && ( birthDay.touched ||  birthDay.dirty )
+              }">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label>Estado Civil</label>
+            <input formControlName="civilStatus" type="text" class="form-control" placeholder="Soltero, Casado, etc" [ngClass]="{
+                'is-valid': !civilStatus.errors,
+                'is-invalid': civilStatus.errors && ( civilStatus.touched ||  civilStatus.dirty )
+              }">
+        </div>
+        <div class="form-group col-md-5">
+            <label>Ocupacion</label>
+            <input formControlName="job" type="text" class="form-control" [ngClass]="{
+                'is-valid': !job.errors,
+                'is-invalid': job.errors && ( job.touched ||  job.dirty )
+              }">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Sexo</label>
+            <select formControlName="sex" class="form-control" [ngClass]="{
+                'is-valid': !sex.errors,
+                'is-invalid': sex.errors && ( sex.touched ||  sex.dirty )
+              }">
+            <option [ngValue]="null" disabled>Elegir</option>
+            <option [ngValue]="'Masculino'">Masculino</option>
+            <option [ngValue]="'Femenino'">Femenino</option>
+          </select>
+        </div>
+    </div>
+    <div formGroupName="contactInfomration">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Domiciolio</label>
+                <input formControlName="address" type="text" class="form-control" [ngClass]="{
+                'is-valid': !contactInfomration['controls'].address.errors,
+                'is-invalid': contactInfomration['controls'].address.errors && ( contactInfomration['controls'].address.touched ||  contactInfomration['controls'].address.dirty )
+              }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Ciudad</label>
+                <input formControlName="city" type="text" class="form-control" [ngClass]="{
+                'is-valid': ! contactInfomration['controls'].city.errors,
+                'is-invalid': contactInfomration['controls'].city.errors && ( contactInfomration['controls'].city.touched ||  contactInfomration['controls'].city.dirty )
+              }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Correo electronico</label>
+                <input formControlName="email" type="email" class="form-control" placeholder="ejemplo@gmail.com" [ngClass]="{
+                    'is-valid': !contactInfomration['controls'].email.errors,
+                    'is-invalid': contactInfomration['controls'].email.errors && ( contactInfomration['controls'].email.touched ||  contactInfomration['controls'].email.dirty )
+                }">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Telefono domicilio</label>
+                <input formControlName="phone" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].phone.errors,
+                    'is-invalid': contactInfomration['controls'].phone.errors && ( contactInfomration['controls'].phone.touched ||  contactInfomration['controls'].phone.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Telefono oficina</label>
+                <input formControlName="phoneOffice" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].phoneOffice.errors,
+                    'is-invalid': contactInfomration['controls'].phoneOffice.errors && ( contactInfomration['controls'].phoneOffice.touched ||  contactInfomration['controls'].phoneOffice.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Celular</label>
+                <input formControlName="cellphone" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].cellphone.errors,
+                    'is-invalid': contactInfomration['controls'].cellphone.errors && ( contactInfomration['controls'].cellphone.touched ||  contactInfomration['controls'].cellphone.dirty )
+                }">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>¿Cómo supo de la clínica?</label>
+        <textarea formControlName="sourceInformation" type="text" class="form-control" [ngClass]="{
+                    'is-valid': !sourceInformation.errors,
+                    'is-invalid': sourceInformation.errors && ( sourceInformation.touched ||  sourceInformation.dirty )
+                  }">
+        </textarea>
+    </div>
+
+    <button type="submit" [disabled]="!clientForm.valid" class="btn btn-primary btn-lg btn-block">Crear datos del cliente</button>
+</form>

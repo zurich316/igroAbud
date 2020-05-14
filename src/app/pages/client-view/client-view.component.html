@@ -1,0 +1,84 @@
+<button [routerLink]="['../../']" class="btn btn-secondary float-left">Atras</button>
+<h3 class="text-center bold">Cliente: {{client.name}} {{client.lastname}}</h3>
+<hr>
+<div class="row font-italic">
+    <div class="col-sm">
+        <p>Fecha de registro: {{client.createdAt | date: 'dd/MM/yyyy'}}</p>
+    </div>
+    <div class="col-sm">
+        <p>Fecha ultima modificacion {{client.updatedAt | date: 'dd/MM/yyyy'}}</p>
+    </div>
+    <div class="col-sm">
+        <p>Fecha ultima consulta {{client.lastExam | date: 'dd/MM/yyyy'}}</p>
+    </div>
+</div>
+
+<hr>
+<!-- Fila 1 -->
+<div class="row">
+    <div class="col-sm">
+        <label class="font-weight-bold">Edad</label>
+        <p> {{client.age}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Lugar de nacimiento</label>
+        <p>{{client.birthPlace}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Fecha de nacimiento</label>
+        <p> {{client.birthDay | date: 'dd/MM/yyyy'}}</p>
+    </div>
+</div>
+<!-- Fila 2 -->
+<div class="row">
+    <div class="col-sm">
+        <label class="font-weight-bold">Estado Civil</label>
+        <p>{{client.civilStatus}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Ocupacion</label>
+        <p>{{client.job}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Sexo</label>
+        <p>{{client.sex}}</p>
+    </div>
+</div>
+<!-- Fila 3 -->
+<div class="row">
+    <div class="col-sm">
+        <label class="font-weight-bold">Domicilio</label>
+        <p>{{client.contactInfomration.address}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Ciudad</label>
+        <p>{{client.contactInfomration.city}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Correo Electronico</label>
+        <p>{{client.contactInfomration.email}}</p>
+    </div>
+</div>
+<!-- Fila 4 -->
+<div class="row">
+    <div class="col-sm">
+        <label class="font-weight-bold">Telefono domcilio</label>
+        <p>{{client.contactInfomration.phone}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Telefono oficina</label>
+        <p>{{client.contactInfomration.phoneOffice}}</p>
+    </div>
+    <div class="col-sm">
+        <label class="font-weight-bold">Celular</label>
+        <p>{{client.contactInfomration.cellphone}}</p>
+    </div>
+</div>
+<!-- Fila 5 -->
+<hr>
+<div class="row">
+    <div class="col-sm">
+        <p class="font-weight-bold text-center">¿Cómo supo de la clínica?</p>
+        <p>{{client.sourceInformation}}</p>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<button [routerLink]="['nuevo']" class="btn btn-primary float-right">Nuevo Cliente</button>
+<h3 class="text-center">Lista de clientes</h3>
+<br>
+<div class="table-responsive">
+    <table class="table text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre completo</th>
+                <th scope="col">Fecha de registro</th>
+                <th scope="col">Ultima consulta</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clientList;let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{client.name}} {{client.lastname}}</td>
+                <td>{{client.createdAt | date: 'dd/MM/yyyy'}}</td>
+                <td>{{client.lastExam | date: 'dd/MM/yyyy'}}</td>
+                <td>
+                    <div class="btn-group " role="group" aria-label="Basic example">
+                        <button [routerLink]="[i]" class="btn btn-secondary">Editar</button>
+                        <button [routerLink]="[i,'vista']" class="btn btn-secondary">Ver</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
