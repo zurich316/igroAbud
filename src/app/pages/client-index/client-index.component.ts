@@ -9,8 +9,8 @@ import { Client } from '../../model/client';
 })
 export class ClientIndexComponent implements OnInit {
 
-  clientList:Client[] = [];
-  constructor(private _clientService: ClientsService) { 
+  clientList: Client[] = [];
+  constructor(private _clientService: ClientsService) {
     this.clientList = _clientService.clientList;
   }
 

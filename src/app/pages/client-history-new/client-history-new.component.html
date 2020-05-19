@@ -1,82 +1,535 @@
-<h3 class="text-center">Datos personales</h3>
+<button [routerLink]="['../../']" class="btn btn-secondary float-left">Atras</button>
+<h3 class="text-center">Historia clinica medica</h3>
 <hr>
-<form [formGroup]="myForm" (ngSubmit)="createClient()">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Apellidos</label>
-            <input type="text" class="form-control" placeholder="Apellidos">
+<form [formGroup]="clinicHistoryForm" (ngSubmit)="createClinicHistory()">
+    <div formGroupName="consultion">
+        <div class="form-group">
+            <label>Motivo de consulta</label>
+            <textarea formControlName="motive" type="text" class="form-control" [ngClass]="{
+                        'is-valid': !consultion.get('motive').errors,
+                        'is-invalid': consultion.get('motive').errors && ( consultion.get('motive').touched ||  consultion.get('motive').dirty )
+                        }">
+            </textarea>
         </div>
-        <div class="form-group col-md-6">
-            <label>Nombres</label>
-            <input type="text" class="form-control" placeholder="Nombres">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Ultima visita al denstista</label>
+                <input formControlName="lastMeeting" type="text" class="form-control" placeholder="Fecha exacta o aproximacion en dias, meses o años" [ngClass]="{
+                    'is-valid': !consultion.get('lastMeeting').errors,
+                    'is-invalid': consultion.get('lastMeeting').errors && ( consultion.get('lastMeeting').touched ||  consultion.get('lastMeeting').dirty )
+                    }">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Tratamiento recibido</label>
+                <input formControlName="treatment" type="text" class="form-control" placeholder="Breve explicacion" [ngClass]="{
+                    'is-valid': !consultion.get('treatment').errors,
+                    'is-invalid': consultion.get('treatment').errors && ( consultion.get('treatment').touched ||  consultion.get('treatment').dirty )
+                    }">
+            </div>
         </div>
     </div>
+    <hr>
+    <h4>Hábitos de higiene dental</h4>
     <div class="form-row">
+        <div class="form-group col-md-8">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox1"> 
+                    Cepillo dental
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox2">
+                    Vigorosamente
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    Usa hilo dental
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox1"> 
+                    Cepilla su lengua
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox2">
+                    Suavemente
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    Usa enjuague bucal
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    Usa mondadientes
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" placeholder="Frecuencia" class="form-control">
+        </div>
+    </div>
+    <hr>
+    <h4>Antecedentes médicos</h4>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          1) ¿Está actualmente en tratamiento médico?
+        </label>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿De que padece?">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Hace cuanto tiempo?">
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          2) ¿Está tomando algun medicamento?
+        </label>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Cuál?">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Motivo?">
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          3) ¿Fué sometido(a) una intervención quirúrgica?
+        </label>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Cuándo?">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Causa?">
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          4) ¿Padece de alguna alergia?
+        </label>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="¿Cuál?">
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    ¿Anestecia local dental?
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    ¿Penicilina?
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          5) ¿Posterior a heridas o extracciones dentales tuvo hemorragia prolongada?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          6) ¿Los cortes y heridas tardan en cicatrizar?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          7) ¿Siente la boca seca la mayor parte del dia?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          8) ¿Sufre desmayos con frecuencia?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          9) ¿PSufre de hemorragias nasales?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          10) ¿Se siente cansado con facilidad?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          11) ¿Crue o rechina sus dientes en el dia o en la noche?
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          12) ¿Siente ruidos o molestias en su Ariculacion Temporo-Mandibular?
+        </label>
+    </div>
+    <hr>
+    <h4>Hábitos</h4>
+    <div class="form-row">
+        <div class="form-group col-md">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox1"> 
+                    Fuma
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox2">
+                    Consume alcohol
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox3">
+                    Onicofagia
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md">
+            <input type="text" placeholder="Frecuencia" class="form-control">
+        </div>
+    </div>
+    <hr>
+    <h4>Marque si padece alguna de las siguientes enfermedades</h4>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox1"> 
+                Alcoholismo
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox2">
+                Asma
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Cancer
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox1"> 
+                Cirrosis
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox2">
+                Derpesion
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Enf. Venéreas
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Epilepsia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Esquizofrenia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Fármaco-Dependencia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Gastritis
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Hemofilia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Hepatitis
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Herpes
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Leucemia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Lupus
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Migraña
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Osteoporosis
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Poliglobúlia
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Presión Alta
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Presión baja
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Reumatismo
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Sida/VIH
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Sindrome de Parlinson
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Sinusitis
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Tabaquismo
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                TRanstornos
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Transtornos Tiroideos
+            </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox">
+        <label class="form-check-label" for="inlineCheckbox3">
+                Ulcera Gastrica
+            </label>
+    </div>
+    <div class="form-group col-md">
+        <input type="text" placeholder="Otros" class="form-control">
+    </div>
+    <hr>
+    <h4>Para pacientes femeninas</h4>
+    <div class="form-row">
+        <div class="form-group col-md">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox1"> 
+                    ¿Esta embarazada?
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="inlineCheckbox2">
+                    ¿Esta dando de lactar?
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md">
+            <input type="text" placeholder="¿Que trimestre?" class="form-control">
+        </div>
+    </div>
+    <hr>
+
+    <div class="form-group">
+        <h4>Antecedentes familiares</h4>
+        <textarea type="text" class="form-control"></textarea>
+    </div>
+
+    <!-- <div class="form-row">
         <div class="form-group col-md-4">
             <label>Edad</label>
-            <input type="number" class="form-control">
+            <input formControlName="age" type="number" class="form-control" [ngClass]="{
+                'is-valid': !age.errors,
+                'is-invalid': age.errors && ( age.touched ||  age.dirty )
+                }">
         </div>
         <div class="form-group col-md-4">
             <label>Lugar de nacimiento</label>
-            <input type="text" class="form-control">
+            <input formControlName="birthPlace" type="text" class="form-control" [ngClass]="{
+                'is-valid': !birthPlace.errors,
+                'is-invalid': birthPlace.errors && ( birthPlace.touched ||  birthPlace.dirty )
+                }">
         </div>
         <div class="form-group col-md-4">
             <label>Fecha de nacimiento</label>
-            <input type="date" class="form-control">
+            <input formControlName="birthDay" type="date" class="form-control" [ngClass]="{
+                'is-valid': !birthDay.errors,
+                'is-invalid': birthDay.errors && ( birthDay.touched ||  birthDay.dirty )
+                }">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-5">
             <label>Estado Civil</label>
-            <input type="text" class="form-control" placeholder="Soltero, Casado, etc">
+            <input formControlName="civilStatus" type="text" class="form-control" placeholder="Soltero, Casado, etc" [ngClass]="{
+                'is-valid': !civilStatus.errors,
+                'is-invalid': civilStatus.errors && ( civilStatus.touched ||  civilStatus.dirty )
+                }">
         </div>
         <div class="form-group col-md-5">
             <label>Ocupacion</label>
-            <input type="text" class="form-control">
+            <input formControlName="job" type="text" class="form-control" [ngClass]="{
+                'is-valid': !job.errors,
+                'is-invalid': job.errors && ( job.touched ||  job.dirty )
+                }">
         </div>
         <div class="form-group col-md-2">
             <label>Sexo</label>
-            <select class="form-control">
-              <option selected>Elegir</option>
-              <option>M</option>
-              <option>F</option>
+            <select formControlName="sex" class="form-control" [ngClass]="{
+                'is-valid': !sex.errors,
+                'is-invalid': sex.errors && ( sex.touched ||  sex.dirty )
+                }">
+            <option [ngValue]="null" disabled>Elegir</option>
+            <option [ngValue]="'Masculino'">Masculino</option>
+            <option [ngValue]="'Femenino'">Femenino</option>
             </select>
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Domiciolio</label>
-            <input type="text" class="form-control">
+    <div formGroupName="contactInfomration">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Domiciolio</label>
+                <input formControlName="address" type="text" class="form-control" [ngClass]="{
+                'is-valid': !contactInfomration['controls'].address.errors,
+                'is-invalid': contactInfomration['controls'].address.errors && ( contactInfomration['controls'].address.touched ||  contactInfomration['controls'].address.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Ciudad</label>
+                <input formControlName="city" type="text" class="form-control" [ngClass]="{
+                'is-valid': ! contactInfomration['controls'].city.errors,
+                'is-invalid': contactInfomration['controls'].city.errors && ( contactInfomration['controls'].city.touched ||  contactInfomration['controls'].city.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Correo electronico</label>
+                <input formControlName="email" type="email" class="form-control" placeholder="ejemplo@gmail.com" [ngClass]="{
+                    'is-valid': !contactInfomration['controls'].email.errors,
+                    'is-invalid': contactInfomration['controls'].email.errors && ( contactInfomration['controls'].email.touched ||  contactInfomration['controls'].email.dirty )
+                }">
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label>Ciudad</label>
-            <input type="text" class="form-control">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Telefono domicilio</label>
+                <input formControlName="phone" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].phone.errors,
+                    'is-invalid': contactInfomration['controls'].phone.errors && ( contactInfomration['controls'].phone.touched ||  contactInfomration['controls'].phone.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Telefono oficina</label>
+                <input formControlName="phoneOffice" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].phoneOffice.errors,
+                    'is-invalid': contactInfomration['controls'].phoneOffice.errors && ( contactInfomration['controls'].phoneOffice.touched ||  contactInfomration['controls'].phoneOffice.dirty )
+                }">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Celular</label>
+                <input formControlName="cellphone" type="tel" class="form-control" [ngClass]="{
+                    'is-valid': ! contactInfomration['controls'].cellphone.errors,
+                    'is-invalid': contactInfomration['controls'].cellphone.errors && ( contactInfomration['controls'].cellphone.touched ||  contactInfomration['controls'].cellphone.dirty )
+                }">
+            </div>
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label>Telefono domicilio</label>
-            <input type="tel" class="form-control">
-        </div>
-        <div class="form-group col-md-4">
-            <label>Telefono oficina</label>
-            <input type="tel" class="form-control">
-        </div>
-        <div class="form-group col-md-4">
-            <label>Celular</label>
-            <input type="tel" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Correo electronico</label>
-            <input type="email" class="form-control" placeholder="ejemplo@gmail.com">
-        </div>
-        <div class="form-group col-md-6">
-            <label>¿Cómo supo de la clínica?</label>
-            <input type="text" class="form-control">
-        </div>
-    </div>
+    <div class="form-group">
+        <label>¿Cómo supo de la clínica?</label>
+        <textarea formControlName="sourceInformation" type="text" class="form-control" [ngClass]="{
+                    'is-valid': !sourceInformation.errors,
+                    'is-invalid': sourceInformation.errors && ( sourceInformation.touched ||  sourceInformation.dirty )
+                    }">
+        </textarea>
+    </div> -->
 
     <button type="submit" class="btn btn-primary btn-lg btn-block">Crear datos del cliente</button>
 </form>
